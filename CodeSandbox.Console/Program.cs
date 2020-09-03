@@ -16,7 +16,7 @@ namespace CodeSandbox.Console
 
             int[] numbers = A.Where(x => x > 0).Distinct().OrderBy(x => x).ToArray();
 
-            if (!numbers.Any()) System.Console.WriteLine(1);
+            if (!numbers.Any()) System.Console.WriteLine(1); // return
 
             int previous = 0;
 
@@ -24,7 +24,7 @@ namespace CodeSandbox.Console
             {
                 if (number != previous + 1)
                 {
-                    System.Console.WriteLine(previous + 1);
+                    System.Console.WriteLine(previous + 1); // return
                 }
 
                 previous = number;
@@ -39,7 +39,7 @@ namespace CodeSandbox.Console
             //    previous = numbers[i];
             //}
 
-            System.Console.WriteLine(numbers.Last() + 1);
+            System.Console.WriteLine(numbers.Last() + 1); // return
 
             System.Console.ReadLine();
         }

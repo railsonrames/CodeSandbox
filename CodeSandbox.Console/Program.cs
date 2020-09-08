@@ -1,47 +1,58 @@
-﻿using System.Linq;
-
-namespace CodeSandbox.Console
+﻿namespace CodeSandbox.Console
 {
     class Program
     {
+        static int[] arrayInt = new int[5];
+        private static int _proximaPosicao = arrayInt.Length;
         static void Main(string[] args)
         {
-            //ContaCorrente contaCorrente = new ContaCorrente();
-            //contaCorrente.Saldo = 1000;
-            //System.Console.WriteLine(contaCorrente.CalcularTaxaAdministrativa());
+            arrayInt[0] = 15;
+            arrayInt[1] = 45;
+            arrayInt[2] = 20;
+            arrayInt[3] = 30;
+            arrayInt[4] = 10;
 
-            int[] A = { 1, 3, 6, 4, 1, 2 };
-            //int[] A = { -1, -3 };
-            //int[] A = { 1, 2, 3 };
+            System.Console.WriteLine("Antes da remoção: ");
+            foreach (var item in arrayInt)
+                System.Console.WriteLine($"Item do array {item}");
 
-            int[] numbers = A.Where(x => x > 0).Distinct().OrderBy(x => x).ToArray();
+            int indice = IdentificarItem(20);
+            System.Console.WriteLine($"Indice para remoção identificado: {indice}");
 
-            if (!numbers.Any()) System.Console.WriteLine(1); // return
+            Remover(indice);
 
-            int previous = 0;
-
-            foreach (int number in numbers)
-            {
-                if (number != previous + 1)
-                {
-                    System.Console.WriteLine(previous + 1); // return
-                }
-
-                previous = number;
-            }
-
-            //for (int i = 0; i < numbers.Count(); i++)
-            //{
-            //    if (numbers[i] != previous + 1)
-            //    {
-            //        System.Console.WriteLine(previous + 1);
-            //    }
-            //    previous = numbers[i];
-            //}
-
-            System.Console.WriteLine(numbers.Last() + 1); // return
+            System.Console.WriteLine("Após a remoção: ");
+            foreach (var item in arrayInt)
+                System.Console.WriteLine($"Item do array {item}");
 
             System.Console.ReadLine();
+        }
+
+        static int IdentificarItem(int valor)
+        {
+            int indice = -1;
+
+            for (int i = 0; i < _proximaPosicao; i++)
+            {
+                if (arrayInt[i].Equals(valor))
+                {
+                    indice = i;
+                    break;
+                }
+            }
+
+            return indice;
+        }
+
+        static void Remover(int indiceItemRemovido)
+        {
+            for (int i = indiceItemRemovido; i < _proximaPosicao - 1; i++)
+            {
+                arrayInt[i] = arrayInt[i + 1];
+            }
+
+            _proximaPosicao--;
+            arrayInt[_proximaPosicao] = 0;
         }
     }
 }
